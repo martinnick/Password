@@ -13,8 +13,11 @@ public class PasswordKeeper
 			
 			private JPanel panel;
 			private JLabel messageLabel;
+			private JTextField passNumField;
+			private JLabel messageLabelOne;
 			private JTextField passTextField;
 			private JButton storePassButton;
+			private int numPasswords;
 			
 			private final int WINDOW_WIDTH = 640;
 			private final int WINDOW_HEIGHT = 480;
@@ -39,7 +42,9 @@ public class PasswordKeeper
 			private void buildPanel()
 			{
 				
-				messageLabel = new JLabel("Please enter new password to store.");
+				messageLabel = new JLabel("Please enter the number of Passwords to be stored.");
+				passNumField = new JTextField(2);
+				messageLabelOne = new JLabel("Please enter new password to store.");
 				passTextField = new JTextField(10);
 				storePassButton = new JButton("Store Password");
 				
@@ -48,6 +53,8 @@ public class PasswordKeeper
 				panel = new JPanel();
 				
 				panel.add(messageLabel);
+				panel.add(passNumField);
+				panel.add(messageLabelOne);
 				panel.add(passTextField);
 				panel.add(storePassButton);
 				
@@ -62,8 +69,10 @@ public class PasswordKeeper
 					String words;
 					
 					words = passTextField.getText();
+					numPasswords = passNumField.getText();
 					
-					PasswordData update = new PasswordData();
+					PasswordData[] update = new PasswordData[numPasswords];
+					
 					update.setPassword(words);
 					
 					JOptionPane.showMessageDialog(null, update.getPassword());
