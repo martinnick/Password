@@ -1,5 +1,8 @@
 import javax.swing.*;
+
+import java.awt.HeadlessException;
 import java.awt.event.*;
+import java.io.IOException;
 
 
 public class PasswordKeeper
@@ -68,14 +71,28 @@ public class PasswordKeeper
 					
 					String words;
 					
+					PasswordData test = new PasswordData();
 					words = passTextField.getText();
-					numPasswords = passNumField.getText();
+					try {
+						test.setPassword(words);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					numPasswords = Integer.parseInt(passNumField.getText());
+								
+					passTextField.setText("");
+						
+				
 					
-					PasswordData[] update = new PasswordData[numPasswords];
+					PasswordData testing = new PasswordData();
+					try {
+						JOptionPane.showMessageDialog(null, testing.getPassword());
+					} catch (HeadlessException | IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					
-					update.setPassword(words);
-					
-					JOptionPane.showMessageDialog(null, update.getPassword());
 				}
 			}
 		}
